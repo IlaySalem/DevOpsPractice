@@ -41,17 +41,41 @@ resource "aws_instance" "first_vm" {
   ami           = data.aws_ami.ubuntu.id
   key_name      = aws_key_pair.kp.key_name
   instance_type = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.webserver.id]
 
-	user_data = <<-EOF
-	#!/!bin/bash
-	echo "*** INSTALLING NGINX"
-	sudo apt update -y
-	sudo apt install nginx -y
-	sudo systemctl start nginx
-	echo "*** COMPLITED INSTALLATION NGINX"
-	EOF
-
+  user_data = "${file("install_nginx.sh")}"
+  
   tags = {
     Name = "HelloWorld"
   }
+}
+
+resource "aws_security_group" "webserver" {
+    name = "WebServer Security Group"
+    ingress{
+        from_port = 8
+        to_port = -1
+        protocol = "icmp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    ingress{
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    ingress{
+        from_port = 80
+        to_port = 80
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    
+    egress{
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
 }
