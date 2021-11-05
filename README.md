@@ -343,13 +343,13 @@
 ## Развернутая VM
 <details>
    <summary> Развернуть </summary>
-   ![Alt vm](https://github.com/IlaySalem/DevOpsPractice/blob/main/resources/img/instances.png "AWS VM")
+   ![](https://github.com/IlaySalem/DevOpsPractice/blob/main/resources/img/instances.png)
 </details>
 
 <a name = "screen_nginx"></a>
 ## Welcome-страница nginx
 <details>
    <summary> Развернуть </summary>
-   ![Alt nginx](https://github.com/IlaySalem/DevOpsPractice/blob/main/resources/img/nginx.png "Nginx")
+   ![]](https://github.com/IlaySalem/DevOpsPractice/blob/main/resources/img/nginx.png)
 </details>
    
